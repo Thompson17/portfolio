@@ -1,0 +1,98 @@
+html{
+    background-color: #505050;
+    margin: 10px;
+}
+
+body {
+    width: 550px;
+    background-color: white;
+    margin: auto;
+    border-style: solid;
+    border-color: white;
+    border-width: 15px;
+}
+
+.active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    color: red;
+}
+
+h6 {
+    display: none;
+}
+
+.separator {
+    font-size: 1px;
+    background-color: black;
+    border-style: solid;
+    border-width: thin;
+    width: 0;
+    height: 50px;
+}
+
+nav td {
+    background-color: darkgray;
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+table {
+    margin: auto;
+}
+
+figcaption {
+    color: cyan;
+    text-align: center;
+    font-size: 24px;
+}
+
+video {
+    width: 550px;
+}
+
+section table{
+    width: 550px;
+    border-style: solid;
+    border-width: thin;
+}
+
+section table td{
+    border-style: solid;
+    border-width: thin;
+    border-color: cyan;
+    width: 275px;
+}
+
+h2 {
+    background-color: #e0e0e0;
+    text-shadow: 5px 5px darkgray;
+}
+
+.figInOneLine {
+    display: flex;
+}
+
+.figInOneLine .left {
+    flex: 50%;
+}
+
+.figInOneLine .right {
+    flex: 50%;
+}
+
+.figInOneLine img {
+    width: 100%;
+}
+
+h3 {
+    background-color: yellow;
+    color: darkgray;
+}

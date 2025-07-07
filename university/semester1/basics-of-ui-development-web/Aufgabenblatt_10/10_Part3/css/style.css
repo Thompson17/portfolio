@@ -1,0 +1,28 @@
+html{
+    touch-action: none;
+
+    /* Disables selection of text on long press*/
+    /* From: https://stackoverflow.com/questions/11237936/mobile-web-disable-long-touch-taphold-text-selection*/
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+body{
+    width: 95%;
+    height: 95vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.box{
+    width: 90%;
+    background-color: #b0b0b0;
+    border-style: solid;
+    font-family: Arial,sans-serif;
+    margin: auto;
+}

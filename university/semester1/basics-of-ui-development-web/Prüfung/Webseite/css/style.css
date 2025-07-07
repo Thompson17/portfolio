@@ -1,0 +1,114 @@
+body{
+    background-color: #f5f5f5;
+}
+
+.foto-kunde{
+    max-height: 250px;
+}
+
+.bg-primary{
+    background-color: #75a30f!important;
+}
+
+.bg-info{
+    background-color: #e0e0e0!important;
+    border: solid #410059;
+    border-radius: 10px;
+
+}
+
+.bg-dark{
+    background-color: #415e00!important;
+}
+
+.bg-grey{
+    background-color: #e0e0e0;
+}
+
+.btn-primary{
+    background-color: #75a30f;
+    border-color: #75a30f;
+}
+
+.btn-primary:hover{
+    background-color: #415e00;
+    border-color: #415e00;
+}
+
+.btn-primary:focus, .btn-primary.focus, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled):active:focus{
+    background-color: #415e00;
+    border-color: #415e00;
+    box-shadow: none;
+}
+
+.btn-outline-secondary{
+    border-color: #410059;
+    color: #410059;
+}
+
+.btn-outline-secondary:hover{
+    border-color: #410059;
+    background-color: #410059;
+    color: white;
+}
+
+.btn-secondary{
+    background-color: #415e00;
+    border-color: #415e00;
+}
+
+.text-success{
+    color: #410059!important;
+}
+
+.text-info{
+    color: #410059!important;
+}
+
+a, a:focus, a:hover, .btn-link, .btn-link:hover{
+    color: #75a30f;
+}
+
+.a-black, .a-black:hover{
+    color: #000000;
+}
+
+.navbar-brand img{
+    height: 40px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #000000;
+}
+
+.navbar-light .navbar-nav .active > .nav-link{
+    color: #b1db53;
+}
+
+.nav-link:hover{
+    color: #b1db53!important;
+}
+
+.dropdown-divider{
+    border-top: 1px solid #e0e0e0;
+}
+
+.page-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.page-content{
+    padding-bottom: 2.5rem;
+}
+
+.own-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#fotoschmitt{
+    max-height: 400px;
+    max-width: 400px;
+}

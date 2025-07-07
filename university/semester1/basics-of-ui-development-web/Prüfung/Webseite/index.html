@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-grid.css" rel="stylesheet">
+    <link href="css/bootstrap-reboot.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <title>Code & Relax</title>
+  </head>
+  <body class="mx-0">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="index.html">
+      <img src="img/logosecondarydark.png" alt="logo">
+    </a>    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Start<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="beitreten.html">Jetzt Beitreten</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Programmiersprachen
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="brainfuck.html">Brainfuck</a>
+            <a class="dropdown-item" href="lolcode.html">LOLCODE</a>
+            <a class="dropdown-item" href="whitespace.html">Whitespace</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rezensionen.html">Erfahrungsberichte</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kontakt.html">Kontakt</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="beitreten.html" class="nav-link">Registrieren</a></li>
+        <li><a href="#" class="nav-link">Anmelden</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <h1 class="text-center text-info my-5">Code and Relax - Esoterische Programmiersprachen zum Entspannen</h1>
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- Bildquelle: https://unsplash.com/photos/95YRwf6CNw8 -->
+          <img src="img/clement-helardot-95YRwf6CNw8-unsplash_560px.jpg" class="d-block w-100" alt="Slider 1">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Pure Entspannung</h5>
+            <p>Wir bieten für jeden das Passende - unsere Auswahl an esoterischen Programmiersprachen</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <!-- Bildquelle: https://unsplash.com/photos/smgTvepind4 -->
+          <img src="img/chris-montgomery-smgTvepind4-unsplash_560px.jpg" class="d-block w-100" alt="Slider 2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Persönliche Lehre</h5>
+            <p>Unser Angebot kombiniert Selbstlernen mit interaktiven Onlineklassen</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <!-- Bildquelle: https://unsplash.com/photos/LCcFI_26diA -->
+          <img src="img/brooke-cagle-LCcFI_26diA-unsplash_560px.jpg" class="d-block w-100" alt="Slider 3">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Lehnen Sie sich zurück</h5>
+            <p>Lernen Sie den ganzen Alltagsstress loszuwerden. <a href="beitreten.html">Registrieren Sie sich jetzt!</a></p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div class="mx-5 mt-5">
+      <h2>Was sind esoterische Programmiersprachen?</h2>
+      <p class="font-weight-lighter text-muted">Definition nach dev-insider.de:</p>
+      <p>"Esoterische Programmiersprachen sind nicht für den produktiven Einsatz gedacht, vielmehr geht es darum, ungewöhnliche Sprachkonzepte umzusetzen. Ausgangspunkt könnte beispielsweise der Anspruch sein, einen möglichst kleinen Interpreter zu haben. In anderen Fällen war den Entwicklern eher daran gelegen, massiv zu vereinfachen – oder auch zu verkomplizieren: Es gibt Sprachen, neben denen C-Quellcode die Komplexität von „Alle meine Entchen“ ausstrahlt. Und ein nicht unerheblicher Teil der esoterischen Programmiersprachen dient schlicht dem Amüsement von Nerds und Programmierern – und das seit immerhin 45 Jahren. Aber bevor der Verdacht aufkommt, hier würde es sich nur um einen Haufen Unsinn handeln: Viele solcher Sprachen sind Turing-vollständig, verdeutlichen Konzepte „echter“ Programmiersprachen und werden an Universitäten rund um den Globus behandelt."</p>
+      <p>In unseren Kursen werden Sie in einer Weise an verschiedene esoterische Programmiersprachen herangeführt, sodass Sie diese als Entspannungstechnik nutzen können. Dabei ist völlig unwichtig, ob Sie bereits Erfahrung mit Programmierung haben oder völliger Neueinsteiger sind!</p>
+    </div>
+    <div class="mx-5 mt-5">
+      <h2>Welche Programmiersprachen bieten wir an?</h2>
+      <h3>Brainfuck</h3>
+      <p><a href="brainfuck.html">Brainfuck</a> zeichnet sich dadurch aus, dass es aus einem sehr simplen Zeichensatz besteht. Insgesamt gibt es nur 8 verschiedene Befehle, die durch die folgenden Zeichen dargstellt werden:<span style="color: #a644c9; font-weight: bold"> &lt; &gt; + - . , [ ]</span></p>
+      <p>Diese Kombination aus simplem Zeichensatz, dafür aber aufwendiger Realisierung schult die Geduld und ermöglicht innere Ruhe zu erreichen, ähnlich wie beim in Skandinavien beliebten "Steinemännchen bauen". Mehr Informationen zu Brainfuck finden Sie <a href="brainfuck.html">hier.</a></p>
+      <h3>LOLCODE</h3>
+      <p><a href="lolcode.html">LOLCODE</a> ist in seinem Befehlssatz angelegt hat das Netzjargon Lolspeak, das in den 2000ern durch das Lolcat-Meme entstand. Ein <a href="lolcode.html">LOLCODE</a>-Programm beginnt beispielsweise mit dem Befehl "HAI" ("Hi!") und endet mit "KTHXBYE" ("Ok, thanks, bye.").</p>
+      <p>Dieser humoristische Ansatz für eine esoterische Programmiersprache soll Sie zum Schmunzeln und Lachen bringen, denn Lachen ist bekanntlich die beste Medizin und trägt zur allgemeinen Entspannung bei. Mehr Informationen zu LOLCODE finden Sie <a href="lolcode.html">hier.</a></p>
+      <h3>Whitespace</h3>
+      <p><a href="whitespace.html">Whitespace</a> besteht ausschließlich aus Leerzeichen, Tabs und Zeilenumbrüchen (sogenannten Whitespaces). Durch die Kombination von "l", "t" und "u" (Leerzeichen / Tab / Umbruch) lassen sich die Programme erstellen. Visualisiert wird das Ganze in einer Entwicklungsumgebung, Sie müssen also nicht die Zeichen mit den Pfeiltasten zählen und sich merken.</p>
+      <p>Durch die Simplizität und die Arbeit mit farblichen Blöcken im Editor ist <a href="whitespace.html">Whitespace</a> eine Programmiersprache, die das Auge mehr anspricht als herkömmliche, textbasierte Programmiersprachen. Mehr Informationen zu Whitespace finden Sie <a href="whitespace.html">hier.</a></p>
+    </div>
+    <div class="m-5">
+      <h2>Wie sind unsere Kurse aufgebaut?</h2>
+      <p>Sobald Sie sich <a href="beitreten.html">registriert</a> haben, bekommen Sie Zugriff auf das Lernportal. Hier finden Sie zu den jeweiligen Programmiersprachen und Entspannungstechniken Dokumentation und Übungen. Diese können Sie ganz einfach im Selbstlernverfahren bearbeiten. Zusätzlich können Sie sich in die verschiedenen Onlineklassen einschreiben, die regelmäßig angeboten werden, um mit einem Kursleiter ein tieferes Verständnis der Themen zu erarbeiten. Wenn Sie in einem Kurs angemeldet sind, werden dort auch regelmäßig die selbst erledigten Übungen besprochen und korrigiert. Sollten Sie sich für unser <span style="color: #410059; font-weight: bold">Premium-Abo</span> entschieden haben, bekommen Sie dieses Angebot auch als Einzelstunden. Zusätzlich gibt es noch unser Online Forum, in dem Sie sich mit Lehrenden und anderen Lernenden über Inhalte und Aufgaben austauschen können.</p>
+      <p>Wenn wir Sie überzeugt haben, dann <a href="beitreten.html">registrieren Sie sich jetzt!</a></p>
+    </div>
+
+    <div class="bg-grey d-flex justify-content-between pt-3 px-5">
+      <p>&copy; 2021 Thomas Simpson</p>
+      <a class="a-black" href="kontakt.html#impressum">Impressum</a>
+      <a href="#">Nach Oben</a>
+    </div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>

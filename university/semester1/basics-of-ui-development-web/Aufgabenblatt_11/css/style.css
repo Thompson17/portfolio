@@ -1,0 +1,61 @@
+html{
+    background-color: #ff8c00;
+}
+
+body{
+    background-color: #008000;
+    width: 768px;
+    margin: auto;
+}
+
+h1{
+    text-align: center;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+form, table{
+    width: 100%;
+    margin: auto;
+}
+
+td{
+    padding-bottom: 15px;
+}
+
+input{
+    border-radius: 5px;
+}
+
+input[list]{
+    background-color: #0000ff;
+
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 100;
+    color: #ffffff;
+}
+
+textarea{
+    border-radius: 10px;
+}
+
+input[type=reset]{
+    border-radius: 50%;
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    height: 50px;
+    width: 60px;
+}
+
+input[type=submit]{
+    border-radius: 50%;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    height: 50px;
+    width: 110px;
+}
+

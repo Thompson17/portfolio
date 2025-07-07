@@ -1,0 +1,26 @@
+body {
+    font-family: "Roboto Light", sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+.flex-links {
+    flex: 40%;
+    margin: 5px;
+}
+
+.flex-rechts {
+    flex: 40%;
+    margin: 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .flex-links, .flex-rechts {
+        flex: 100%;
+    }
+}
+
