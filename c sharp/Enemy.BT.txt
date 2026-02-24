@@ -1,0 +1,18 @@
+tree("Root")
+	fallback
+		sequence
+			while
+				PlayerInSight
+				fallback
+					sequence
+						CloseToPlayer
+						Attack
+						Wait(5.0)
+					MoveToPlayer	
+		fallback
+			fallback
+				sequence
+					AtCurrentWaypoint
+					SetNextWaypoint
+					Wait(1.0)
+				MoveToWaypoint

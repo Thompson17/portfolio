@@ -1,0 +1,31 @@
+tree("Root")
+	fallback
+		// Bring nectar back to the hive
+		sequence
+			BeeHasNectar
+			sequence
+				DeselectFlower
+				MoveTo("Hive")
+				Wait(3.0)
+				DropNectar
+		// Get nectar from suitable flower
+		sequence
+			FindFlower
+			sequence
+				MoveTo("Flower")
+				fallback
+					sequence
+						FlowerHasNectar
+						sequence
+							PickUpNectar
+							Wait(3.0)
+					// No nectar upon arrival
+					sequence
+						mute
+							RemoveFlowerFromList
+						DeselectFlower
+		// No more flowers with nectar, reset
+		parallel
+			Wait(3.0)
+			mute
+				ResetAvailableFlowers
