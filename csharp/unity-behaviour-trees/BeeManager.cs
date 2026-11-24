@@ -10,11 +10,10 @@ public class BeeManager : MonoBehaviour
     // Flower lists
     private GameObject[] flowers;
     private List<GameObject> availableFlowers;
-    
+
     // Time of last list reset
     private float lastReset;
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +35,8 @@ public class BeeManager : MonoBehaviour
         {
             flower.GetComponent<Flower>().ResetNectar();
         }
-        
+        lastReset = Time.time;
+
     }
 
     /// <summary>

@@ -9,6 +9,7 @@ using namespace std;
 
 class MetrikVerhalten{
 public:
+    virtual ~MetrikVerhalten() = default;
     virtual double abstand(Punkt const& lhs, Punkt const& rhs) = 0;
 };
 

@@ -2,11 +2,10 @@ package de.hsos.vs.chess.chessgame.servlet.util;
 
 import de.hsos.vs.chess.chessgame.rmi.api.IClientProxy;
 import de.hsos.vs.chess.chessgame.rmi.api.IGameProxy;
-import de.hsos.vs.chess.chessgame.rmi.client.WebClientProxy;
 import jakarta.websocket.Session;
 
 /**
- * Class the holds further information belonging to a session
+ * Stores WebSocket session data and associated RMI proxies.
  */
 public class SessionData {
 

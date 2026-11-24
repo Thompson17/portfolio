@@ -4,6 +4,7 @@
 
 
 #include "Quader.h"
+#include <cmath>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ string Quader::toString() {
 }
 
 double Quader::inhalt() {
-    return abs((roh.x - luv.x) * (roh.y - luv.y) * (roh.z - luv.z));
+    return std::abs((roh.x - luv.x) * (roh.y - luv.y) * (roh.z - luv.z));
 }
 
 GeoObjekt *Quader::clone() const {

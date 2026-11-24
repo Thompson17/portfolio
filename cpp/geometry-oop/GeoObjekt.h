@@ -17,10 +17,8 @@ struct OperandenPassenNicht : public exception {
 };
 
 class GeoObjekt {
-protected:
-    MetrikVerhalten* metrik;
-
 public:
+    virtual ~GeoObjekt() = default;
     virtual double inhalt() = 0;
 
     virtual string toString() = 0;

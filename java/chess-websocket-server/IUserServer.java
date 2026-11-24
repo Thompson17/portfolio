@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * The interface User server. Used by the client to connect / disconnect to the user server.
+ * Remote interface for user registration, login and logout.
  */
 public interface IUserServer extends Remote {
 

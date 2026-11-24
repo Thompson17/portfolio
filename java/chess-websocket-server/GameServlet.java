@@ -10,6 +10,7 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -17,27 +18,26 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Server Endpoint of the webserver. Receives, processes and forwards messages between web clients and the game server.
+ * WebSocket endpoint that receives, processes and forwards messages between web clients and the game server.
  */
 @ServerEndpoint("/game")
 public class GameServlet implements WebClientProxyListener {
 
     /**
-     * The constant sessions.
+     * Active WebSocket sessions indexed by session ID.
      */
-    private static final Map<String, SessionData> sessions = new HashMap<>();
+    private static final Map<String, SessionData> sessions = new ConcurrentHashMap<>();
     /**
-     * The constant userServer.
+     * Remote user management service.
      */
     private static IUserServer userServer;
 
     /**
-     * On open.
-     * Gets Called when a web client opens the website.
+     * Called when a client establishes a WebSocket connection.
      *
      * @param session the session
      */
@@ -57,8 +57,7 @@ public class GameServlet implements WebClientProxyListener {
     }
 
     /**
-     * On message.
-     * Gets called when a web client sends a message through a socket.
+     * Called when a client sends a WebSocket message.
      *
      * @param message the message
      * @param session the session
@@ -67,42 +66,58 @@ public class GameServlet implements WebClientProxyListener {
     @OnMessage
     public void onMessage(String message, Session session) throws RemoteException {
         String callerID = session.getId();
-        if (!sessions.containsKey(callerID)) {
+        SessionData sessionData = sessions.get(callerID);
+        if (sessionData == null) {
             System.out.println("message from unknown ID: " + callerID);
             return;
         }
         System.out.println("message from: " + callerID);
-        SessionData sessionData = sessions.get(session.getId());
-        JSONObject jsonData = new JSONObject(message);
-        String type = jsonData.getString("type");
-        switch (type) {
-            case "login":
-                handleLoginRegister(sessionData, jsonData, false);
-                break;
-            case "register":
-                handleLoginRegister(sessionData, jsonData, true);
-                break;
-            case "logout":
-                handleLogout(jsonData);
-                break;
-            case "matchmaking":
-                handleMatchmaking(sessionData, jsonData);
-                break;
-            case "move":
-                handleMove(sessionData, jsonData);
-                break;
-            case "resignation":
-                handleResignation(sessionData, jsonData);
-                break;
-            default:
-                System.err.println("Unknown method");
-                break;
+        try {
+            JSONObject jsonData = new JSONObject(message);
+            String type = jsonData.getString("type");
+            switch (type) {
+                case "login":
+                    handleLoginRegister(sessionData, jsonData, false);
+                    break;
+                case "register":
+                    handleLoginRegister(sessionData, jsonData, true);
+                    break;
+                case "logout":
+                    handleLogout(jsonData);
+                    break;
+                case "matchmaking":
+                    if (sessionData.getGameProxy() == null) {
+                        sendError(session, "No game proxy available");
+                        break;
+                    }
+                    handleMatchmaking(sessionData, jsonData);
+                    break;
+                case "move":
+                    if (sessionData.getGameProxy() == null) {
+                        sendError(session, "No game proxy available");
+                        break;
+                    }
+                    handleMove(sessionData, jsonData);
+                    break;
+                case "resignation":
+                    if (sessionData.getGameProxy() == null) {
+                        sendError(session, "No game proxy available");
+                        break;
+                    }
+                    handleResignation(sessionData, jsonData);
+                    break;
+                default:
+                    System.err.println("Unknown method");
+                    break;
+            }
+        } catch (JSONException e) {
+            System.err.println("Invalid client message");
+            sendError(session, "Invalid client message");
         }
     }
 
     /**
-     * On close.
-     * Get called when a web socket is closed.
+     * Called when a WebSocket connection closes.
      *
      * @param session the session
      */
@@ -110,9 +125,11 @@ public class GameServlet implements WebClientProxyListener {
     public void onClose(Session session) {
         String id = session.getId();
         SessionData sessionData = sessions.get(id);
-        if(sessionData != null){
+        if (sessionData != null) {
             try {
-                sessionData.getGameProxy().resignation();
+                if (sessionData.getGameProxy() != null) {
+                    sessionData.getGameProxy().resignation();
+                }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             } finally {
@@ -123,8 +140,7 @@ public class GameServlet implements WebClientProxyListener {
     }
 
     /**
-     * On error.
-     * Gets called when an error occurs between a web client and the web server
+     * Called when an error occurs between a web client and the web server.
      *
      * @param e the e
      */
@@ -146,7 +162,7 @@ public class GameServlet implements WebClientProxyListener {
         String username = jsonData.getString("username");
         String hash = jsonData.getString("hash");
         String log = "message: ";
-        if (register){
+        if (register) {
             log += " register: ";
         } else {
             log += "login: ";
@@ -156,7 +172,7 @@ public class GameServlet implements WebClientProxyListener {
         WebClientProxy clientProxy = new WebClientProxy(sessionData.getSession());
         sessionData.setClientProxy(clientProxy);
         clientProxy.setListener(this);
-        if (register){
+        if (register) {
             sessionData.setGameProxy(userServer.register(username, hash, clientProxy));
         } else {
             sessionData.setGameProxy(userServer.login(username, hash, clientProxy));
@@ -178,7 +194,7 @@ public class GameServlet implements WebClientProxyListener {
     }
 
     /**
-     * Handle matchmaking. Requests the game server to add or remove GameProxy from the wait list
+     * Requests that the game server add or remove the game proxy from the waiting list.
      *
      * @param sessionData the session data
      * @param jsonData    the json data
@@ -195,7 +211,7 @@ public class GameServlet implements WebClientProxyListener {
     }
 
     /**
-     * Handle move. Sends move info to game server and calls moveResponse with the response.
+     * Forwards a move to the game server and sends its response to the client.
      *
      * @param sessionData the session data
      * @param jsonData    the json data
@@ -219,7 +235,7 @@ public class GameServlet implements WebClientProxyListener {
      * @throws RemoteException the remote exception
      */
     private void handleResignation(SessionData sessionData, JSONObject jsonData) throws RemoteException {
-        System.out.println("message: resgination by: " + jsonData.getString("username"));
+        System.out.println("message: resignation by: " + jsonData.getString("username"));
         sessionData.getGameProxy().resignation();
     }
 
@@ -260,7 +276,7 @@ public class GameServlet implements WebClientProxyListener {
             response.put("startRow", startRow).put("startCol", startCol).put("endRow", endRow).put("endCol", endCol);
         }
         send(sessionData.getSession(), response.toString());
-        if (allowed){
+        if (allowed) {
             checkGameStatus(sessionData);
         }
     }
@@ -294,7 +310,7 @@ public class GameServlet implements WebClientProxyListener {
      */
     private void checkGameStatus(SessionData sessionData) throws RemoteException {
         String gameStatus = sessionData.getGameProxy().gameStatus();
-        if (!gameStatus.equals("active")){
+        if (!gameStatus.equals("active")) {
             JSONObject response = new JSONObject();
             response.put("type", "end").put("gameStatus", gameStatus);
             send(sessionData.getSession(), response.toString());
@@ -302,7 +318,17 @@ public class GameServlet implements WebClientProxyListener {
     }
 
     /**
-     * Sends given response to the session remote.
+     * Sends an error response to the client.
+     */
+    private void sendError(Session session, String message) {
+        JSONObject response = new JSONObject()
+                .put("type", "error")
+                .put("message", message);
+        send(session, response.toString());
+    }
+
+    /**
+     * Sends a response to the WebSocket client.
      *
      * @param session  the session
      * @param response the response

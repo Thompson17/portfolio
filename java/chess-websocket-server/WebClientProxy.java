@@ -8,17 +8,17 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * The type Web client proxy. The game server uses this to send messages to the web server.
+ * Receives remote game server callbacks and forwards them to the web server.
  */
 public class WebClientProxy extends UnicastRemoteObject implements IClientProxy {
     /**
-     * The constant Session.
+     * The associated WebSocket session.
      */
     private final Session session;
     /**
-     * The Listener: the web server
+     * The listener receiving game events.
      */
-    private WebClientProxyListener listener;
+    private volatile WebClientProxyListener listener;
 
     /**
      * Instantiates a new Web client proxy.
@@ -33,22 +33,25 @@ public class WebClientProxy extends UnicastRemoteObject implements IClientProxy 
 
     @Override
     public void startGame(String opponentName, boolean white) throws RemoteException {
-        if (listener != null){
-            listener.onStart(session, opponentName, white);
+        WebClientProxyListener currentListener = listener;
+        if (currentListener != null) {
+            currentListener.onStart(session, opponentName, white);
         }
     }
 
     @Override
     public void sendGameStatus(String gameStatus) throws RemoteException {
-        if (listener != null) {
-            listener.onEnd(session, gameStatus);
+        WebClientProxyListener currentListener = listener;
+        if (currentListener != null) {
+            currentListener.onEnd(session, gameStatus);
         }
     }
 
     @Override
-    public void receiveMove(int startRow, int startCol, int endRow, int endCol) throws RemoteException{
-        if (listener != null){
-            listener.onReceiveMove(session, startRow, startCol, endRow, endCol);
+    public void receiveMove(int startRow, int startCol, int endRow, int endCol) throws RemoteException {
+        WebClientProxyListener currentListener = listener;
+        if (currentListener != null) {
+            currentListener.onReceiveMove(session, startRow, startCol, endRow, endCol);
         }
     }
 

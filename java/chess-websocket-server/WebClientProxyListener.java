@@ -3,7 +3,7 @@ package de.hsos.vs.chess.chessgame.servlet.api;
 import jakarta.websocket.Session;
 
 /**
- * Interface for listening to WebClientProxy events.
+ * Receives events forwarded by the web client proxy.
  */
 public interface WebClientProxyListener {
     /**
