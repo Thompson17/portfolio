@@ -9,13 +9,12 @@ public class Flower : MonoBehaviour
     [SerializeField] private Material hasNectarColour;
     [SerializeField] private Material hasNoNectarColour;
     private Renderer blossom;
-    
+
     // Nectar state
     private bool hasNectar;
 
-    
-    // Start is called before the first frame update
-    void Start()
+    // Initialise the renderer before other components start.
+    void Awake()
     {
         blossom = transform.GetChild(0).GetComponent<Renderer>();
         hasNectar = true;

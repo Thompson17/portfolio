@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
-    
+
     private CharacterController controller;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +16,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(Time.deltaTime * playerSpeed * move); 
+        controller.Move(Time.deltaTime * playerSpeed * move);
     }
 }

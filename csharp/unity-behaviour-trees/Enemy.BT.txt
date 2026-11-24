@@ -8,7 +8,7 @@ tree("Root")
 						CloseToPlayer
 						Attack
 						Wait(5.0)
-					MoveToPlayer	
+					MoveToPlayer
 		fallback
 			fallback
 				sequence

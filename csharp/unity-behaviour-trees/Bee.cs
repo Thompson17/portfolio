@@ -16,8 +16,7 @@ public class Bee : MonoBehaviour
 
     // Has nectar or no nectar
     private bool hasNectar;
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +25,10 @@ public class Bee : MonoBehaviour
         hive = GameObject.Find("Hive");
         navAgent = GetComponent<NavMeshAgent>();
     }
-    
-    
+
     /*
         PandaBT Tasks
-        
+
         Conditions
     */
     // Succeeds if the bee has nectar.
@@ -39,23 +37,22 @@ public class Bee : MonoBehaviour
     {
         return hasNectar;
     }
-    
+
     // Succeeds if the flower has nectar. Fails if there is no flower.
     [Task]
     bool FlowerHasNectar()
     {
-        if (flower is null)
+        if (flower == null)
         {
             return false;
         }
 
         return flower.GetComponent<Flower>().HasNectar;
     }
-    
-    
+
     /*
         PandaBT Tasks
-        
+
         Actions
     */
     // Moves bee to hive or flower depending on the string parameter. Succeeds when reaching the destination. Fails when incorrect input or no valid target.
@@ -75,9 +72,9 @@ public class Bee : MonoBehaviour
                 ThisTask.Fail();
                 return;
         }
-        
+
         // No target
-        if (target is null)
+        if (target == null)
         {
             ThisTask.Fail();
             return;
@@ -95,20 +92,20 @@ public class Bee : MonoBehaviour
             ThisTask.Succeed();
         }
     }
-    
+
     // Gets an available flower from BeeManager. Fails if manager returns null, otherwise succeeds.
     [Task]
     void FindFlower()
     {
         flower = beeManager.GetAvailableFlower();
-        if (flower is null)
+        if (flower == null)
         {
             ThisTask.Fail();
             return;
         }
         ThisTask.Succeed();
     }
-    
+
     // Sets flower to null and succeeds.
     [Task]
     void DeselectFlower()
@@ -121,7 +118,7 @@ public class Bee : MonoBehaviour
     [Task]
     void PickUpNectar()
     {
-        if (flower is null)
+        if (flower == null)
         {
             ThisTask.Fail();
             return;
@@ -149,7 +146,7 @@ public class Bee : MonoBehaviour
             return;
         }
         ThisTask.Fail();
-        }
+    }
 
     // Calls beeManager.ResetAvailableFlowers(). Succeeds if the call returns true. Fails otherwise.
     [Task]

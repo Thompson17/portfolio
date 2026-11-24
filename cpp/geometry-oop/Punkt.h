@@ -11,6 +11,7 @@ using namespace std;
 
 class Punkt {
 public:
+    virtual ~Punkt() = default;
     virtual string toString() = 0;
 };
 

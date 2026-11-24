@@ -3,6 +3,7 @@
 //
 
 #include "Rechteck.h"
+#include <cmath>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ string Rechteck::toString() {
 }
 
 double Rechteck::inhalt() {
-    return abs((ro.x - lu.x) * (ro.y - lu.y));
+    return std::abs((ro.x - lu.x) * (ro.y - lu.y));
 }
 
 GeoObjekt *Rechteck::clone() const {
